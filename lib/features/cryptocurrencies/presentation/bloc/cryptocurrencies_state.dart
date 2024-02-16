@@ -1,35 +1,33 @@
-import 'package:crypto/core/enums/enums_state.dart';
-import 'package:crypto/features/cryptocurrencies/domain/entity/cryptocurrency.dart';
-import 'package:equatable/equatable.dart';
+part of 'cryptocurrencies_bloc.dart';
 
 class CryptocurrenciesState extends Equatable {
   const CryptocurrenciesState({
     this.blocStatus = BlocStatus.noSubmitted,
     this.error = '',
-    this.response = const [],
+    this.cryptoCurrencies = const [],
   });
 
   final BlocStatus blocStatus;
   final String error;
-  final List<CryptocurrencyEntity> response;
+  final List<Cryptocurrency> cryptoCurrencies;
 
   CryptocurrenciesState copyWith({
     BlocStatus? blocStatus,
     String? error,
     String? nameZone,
-    List<CryptocurrencyEntity>? response,
+    List<Cryptocurrency>? cryptoCurrencies,
   }) =>
       CryptocurrenciesState(
         blocStatus: blocStatus ?? this.blocStatus,
         error: error ?? this.error,
-        response: response ?? this.response,
+        cryptoCurrencies: cryptoCurrencies ?? this.cryptoCurrencies,
       );
 
   @override
   List<Object> get props => [
         blocStatus,
         error,
-        response,
+        cryptoCurrencies,
       ];
 }
 
@@ -37,12 +35,7 @@ class CryptocurrenciesInitial extends CryptocurrenciesState {
   const CryptocurrenciesInitial()
       : super(
           blocStatus: BlocStatus.noSubmitted,
-          response: const [],
+          cryptoCurrencies: const [],
           error: '',
         );
-}
-
-enum CryptocurrenciesProcessState {
-  //TODO: PUT IN THE PROCESS STATE NAME OF FLOW
-  init
 }

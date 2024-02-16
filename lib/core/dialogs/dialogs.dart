@@ -2,7 +2,7 @@ import 'package:crypto/core/responsive/responsive.dart';
 import 'package:crypto/core/theme/colors/crypto_colors.dart';
 import 'package:flutter/material.dart';
 
-import '../text/text_primary.dart';
+import '../widgets/text/text_primary.dart';
 
 class DialogCrypto {
   static Future<void> showLoadingDialog(

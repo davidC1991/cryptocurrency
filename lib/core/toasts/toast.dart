@@ -1,5 +1,5 @@
 import 'package:crypto/core/responsive/responsive.dart';
-import 'package:crypto/core/text/text_primary.dart';
+import 'package:crypto/core/widgets/text/text_primary.dart';
 import 'package:crypto/core/theme/colors/crypto_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';

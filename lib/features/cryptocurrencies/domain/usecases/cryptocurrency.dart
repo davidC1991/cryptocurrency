@@ -2,12 +2,12 @@ import 'package:crypto/features/cryptocurrencies/domain/entity/cryptocurrency.da
 import 'package:crypto/features/cryptocurrencies/domain/repository/cryptocurrency_repository.dart';
 import 'package:dartz/dartz.dart';
 
-class Cryptocurrency {
+class Cryptocurrencies {
   final CryptocurrencyRepository cryptocurrencyRepository;
 
-  Cryptocurrency(this.cryptocurrencyRepository);
+  Cryptocurrencies(this.cryptocurrencyRepository);
 
-  Future<Either<String, CryptocurrencyEntity>> call() async {
+  Future<Either<String, List<Cryptocurrency>>> call() async {
     return cryptocurrencyRepository.getCryptocurrencies();
   }
 }

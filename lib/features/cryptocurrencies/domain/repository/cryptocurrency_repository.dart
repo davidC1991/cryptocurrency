@@ -2,5 +2,5 @@ import 'package:crypto/features/cryptocurrencies/domain/entity/cryptocurrency.da
 import 'package:dartz/dartz.dart';
 
 abstract class CryptocurrencyRepository {
-  Future<Either<String, CryptocurrencyEntity>> getCryptocurrencies();
+  Future<Either<String, List<Cryptocurrency>>> getCryptocurrencies();
 }

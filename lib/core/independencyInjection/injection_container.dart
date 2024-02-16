@@ -2,19 +2,20 @@ import 'package:crypto/features/cryptocurrencies/data/datasource/cryptocurrency_
 import 'package:crypto/features/cryptocurrencies/data/repository/cryptocurrency_datasource_impl.dart';
 import 'package:crypto/features/cryptocurrencies/domain/repository/cryptocurrency_repository.dart';
 import 'package:crypto/features/cryptocurrencies/domain/usecases/cryptocurrency.dart';
-import 'package:crypto/features/cryptocurrencies/presentation/cubit/cryptocurrencies_cubit.dart';
+import 'package:crypto/features/cryptocurrencies/presentation/bloc/cryptocurrencies_bloc.dart';
+
 import 'package:get_it/get_it.dart';
 
 final getIt = GetIt.instance;
 
-Future<void> init() async {
+Future<void> dependenciesInitialization() async {
   await cryptoCurrencies();
 }
 
 Future<void> cryptoCurrencies() async {
-  getIt.registerFactory(() => CryptocurrenciesCubit(getIt()));
+  getIt.registerFactory(() => CryptocurrenciesBloc(getIt()));
 
-  getIt.registerLazySingleton(() => Cryptocurrency(getIt()));
+  getIt.registerLazySingleton(() => Cryptocurrencies(getIt()));
   getIt.registerLazySingleton<CryptocurrencyRepository>(
       () => CryptocurrencyDataSourceImpl(getIt()));
   getIt.registerLazySingleton<CryptocurrencyDataSourceRepository>(
