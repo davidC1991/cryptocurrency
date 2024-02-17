@@ -1,6 +1,8 @@
 import 'package:crypto/features/cryptocurrencies/domain/entity/cryptocurrency.dart';
 import 'dart:convert';
 
+import 'package:crypto/features/cryptocurrencies/presentation/enums/compare_enum.dart';
+
 List<CryptocurrencyModel> cryptocurrencyModelFromJson(String str) =>
     List<CryptocurrencyModel>.from(
         json.decode(str).map((x) => CryptocurrencyModel.fromJson(x)));
@@ -11,19 +13,22 @@ class CryptocurrencyModel extends Cryptocurrency {
   final String? name;
   final String? image;
   final double? currentPrice;
+  StatusComparingCryptocurrencyEnum? statusCompare;
 
-  const CryptocurrencyModel({
+  CryptocurrencyModel({
     this.id,
     this.symbol,
     this.name,
     this.image,
     this.currentPrice,
+    this.statusCompare,
   }) : super(
           id: id,
           symbol: symbol,
           name: name,
           image: image,
           currentPrice: currentPrice,
+          statusCompare: statusCompare,
         );
 
   factory CryptocurrencyModel.fromJson(Map<String, dynamic> json) =>
@@ -33,5 +38,6 @@ class CryptocurrencyModel extends Cryptocurrency {
         name: json["name"],
         image: json["image"],
         currentPrice: json["current_price"].toDouble(),
+        statusCompare: StatusComparingCryptocurrencyEnum.ToCompare,
       );
 }

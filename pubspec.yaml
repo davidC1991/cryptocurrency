@@ -42,7 +42,7 @@ dependencies:
   flutter_bloc: ^7.3.0
   fluttertoast: ^8.0.8
   phosphor_flutter: ^2.0.1
-  cached_network_image:
+  debounce_throttle: ^2.0.0
 
 dev_dependencies:
   flutter_test:

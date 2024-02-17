@@ -1,5 +1,5 @@
 import 'package:crypto/core/responsive/responsive.dart';
-import 'package:crypto/core/widgets/text/text_primary.dart';
+import 'package:crypto/core/widgets/texts/text_primary.dart';
 import 'package:crypto/core/theme/colors/crypto_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -9,7 +9,7 @@ class ToastCrypto {
   static Future<bool?> errorToast(String message,
       {ToastGravity gravity = ToastGravity.BOTTOM}) async {
     return await Fluttertoast.showToast(
-      backgroundColor: CryptoColors.primaryColor,
+      backgroundColor: CryptoColors.blue,
       textColor: Colors.white,
       toastLength: Toast.LENGTH_LONG,
       gravity: gravity,
@@ -33,7 +33,7 @@ class ToastCrypto {
         padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 12.0),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(10.0),
-          color: CryptoColors.primaryColor,
+          color: CryptoColors.blue,
         ),
         child: Column(
           mainAxisSize: MainAxisSize.min,
@@ -44,7 +44,7 @@ class ToastCrypto {
               hasError
                   ? Icon(PhosphorIcons.xCircle(), color: Colors.white)
                   : Icon(PhosphorIcons.checkCircle(PhosphorIconsStyle.fill),
-                      color: CryptoColors.primaryColor),
+                      color: CryptoColors.white),
             SizedBox(
               height: responsive.heightPercent(1.5),
             ),

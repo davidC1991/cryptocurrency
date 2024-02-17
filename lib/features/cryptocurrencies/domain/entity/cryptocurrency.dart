@@ -1,3 +1,4 @@
+import 'package:crypto/features/cryptocurrencies/presentation/enums/compare_enum.dart';
 import 'package:equatable/equatable.dart';
 
 class Cryptocurrency extends Equatable {
@@ -6,13 +7,15 @@ class Cryptocurrency extends Equatable {
   final String? name;
   final String? image;
   final double? currentPrice;
+  StatusComparingCryptocurrencyEnum? statusCompare;
 
-  const Cryptocurrency({
+  Cryptocurrency({
     this.id,
     this.symbol,
     this.name,
     this.image,
     this.currentPrice,
+    this.statusCompare,
   });
 
   @override
@@ -22,5 +25,6 @@ class Cryptocurrency extends Equatable {
         name,
         image,
         currentPrice,
+        statusCompare,
       ];
 }

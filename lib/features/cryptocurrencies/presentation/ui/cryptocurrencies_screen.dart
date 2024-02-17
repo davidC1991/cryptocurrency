@@ -1,8 +1,12 @@
 import 'package:crypto/core/enums/enums_state.dart';
-import 'package:crypto/core/widgets/avatars/circle_avatars.dart';
-import 'package:crypto/core/widgets/text/text_primary.dart';
+import 'package:crypto/core/enums/price_order_enum.dart';
+import 'package:crypto/core/theme/colors/crypto_colors.dart';
+import 'package:crypto/core/widgets/texts/text_primary.dart';
+import 'package:crypto/core/widgets/toggles/toggle.dart';
 import 'package:crypto/features/cryptocurrencies/presentation/bloc/cryptocurrencies_bloc.dart';
 import 'package:crypto/features/cryptocurrencies/presentation/controllers/cryptocurrencies_controller.dart';
+import 'package:crypto/features/cryptocurrencies/presentation/enums/compare_enum.dart';
+import 'package:crypto/features/cryptocurrencies/presentation/ui/widgets/cryptocurrency_card.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -15,58 +19,88 @@ class CryptocurrenciesScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     cryptocurrenciesController.context = context;
-    BlocProvider.of<CryptocurrenciesBloc>(context)
-        .add(const GetCryptocurrencies());
     return Scaffold(
-      appBar: AppBar(title: Text('crypto')),
-      body: BlocConsumer<CryptocurrenciesBloc, CryptocurrenciesState>(
-        listener: (context, state) =>
-            cryptocurrenciesController.showErrorToast(state, context),
-        listenWhen: (previous, current) => current.error != previous.error,
-        buildWhen: (previous, current) =>
-            current.blocStatus != previous.blocStatus,
-        builder: (context, state) {
-          if (BlocStatus.submissionInProgress == state.blocStatus) {
-            return const Center(child: const CircularProgressIndicator());
-          }
-          if (BlocStatus.submissionFailure == state.blocStatus) {
-            return _emptyState();
-          }
-          return ListView.builder(
-            itemCount: state.cryptoCurrencies.length,
-            itemBuilder: (context, index) => _cryptocurrencyCard(state, index),
-          );
-        },
+      backgroundColor: CryptoColors.white,
+      floatingActionButton: _orderByPriceToggle(),
+      body: _cryptocurrencies(),
+    );
+  }
+
+  Widget _cryptocurrencies() {
+    return BlocConsumer<CryptocurrenciesBloc, CryptocurrenciesState>(
+      listener: (context, state) =>
+          cryptocurrenciesController.showErrorToast(state, context),
+      listenWhen: (previous, current) => current.error != previous.error,
+      builder: (context, state) {
+        if (BlocStatus.submissionInProgress == state.blocStatus) {
+          return const Center(child: CircularProgressIndicator());
+        }
+        if (BlocStatus.submissionFailure == state.blocStatus) {
+          return _emptyState(
+              'We have no crypto-currencies to show you, come back later');
+        }
+        if (state.cryptoCurrenciesFiltered.isNotEmpty) {
+          return _showCryptocurrenciesFiltered(state);
+        }
+        if (state.cryptoCurrenciesFiltered.isEmpty &&
+            state.querySearch.isNotEmpty) {
+          return _emptyState('No cryptocurrencies were found with that name');
+        }
+        if (state.cryptoCurrenciesFiltered.isNotEmpty) {
+          return _showCryptocurrenciesFiltered(state);
+        }
+        return _showAllCryptocurrencies(state);
+      },
+    );
+  }
+
+  ListView _showAllCryptocurrencies(CryptocurrenciesState state) {
+    return ListView.builder(
+      itemCount: state.cryptoCurrencies.length,
+      itemBuilder: (context, index) => CryptocurrencyCard(
+        name: state.cryptoCurrencies[index].name ?? '',
+        image: state.cryptoCurrencies[index].image ?? '',
+        price: state.cryptoCurrencies[index].currentPrice.toString(),
+        coin: 'USD',
+        onPressedCompare: () =>
+            cryptocurrenciesController.compareCryptocurrency(
+                state.cryptoCurrencies[index],
+                state.cryptocurrenciesInComparing),
+        onPressedFavorite: () {},
+        compareStatus: state.cryptoCurrencies[index].statusCompare?.status ??
+            StatusComparingCryptocurrencyEnum.ToCompare.status,
       ),
     );
   }
 
-  Widget _cryptocurrencyCard(CryptocurrenciesState state, int index) {
-    return Card(
-      child: ListTile(
-        leading: Avatars.circle(cryptocurrenciesController.context,
-            state.cryptoCurrencies[index].image ?? ''),
-        title: TextPrimary(
-          text: state.cryptoCurrencies[index].name ?? '',
-          fontWeight: FontWeight.w600,
-          fontSize: 18,
-          textAlign: TextAlign.left,
-        ),
-        subtitle: TextPrimary(
-          text: state.cryptoCurrencies[index].currentPrice.toString(),
-          fontWeight: FontWeight.w600,
-          fontSize: 18,
-          textAlign: TextAlign.left,
-        ),
+  ListView _showCryptocurrenciesFiltered(CryptocurrenciesState state) {
+    return ListView.builder(
+      itemCount: state.cryptoCurrenciesFiltered.length,
+      itemBuilder: (context, index) => CryptocurrencyCard(
+        name: state.cryptoCurrenciesFiltered[index].name ?? '',
+        image: state.cryptoCurrenciesFiltered[index].image ?? '',
+        price: state.cryptoCurrenciesFiltered[index].currentPrice.toString(),
+        coin: 'USD',
       ),
     );
   }
 
-  Center _emptyState() {
-    return const Center(
+  Center _emptyState(String message) {
+    return Center(
       child: TextPrimary(
-        text: 'No se encontraron criptomonedas',
+        text: message,
       ),
+    );
+  }
+
+  Toggle _orderByPriceToggle() {
+    return Toggle(
+      data: {
+        PriceOrderEnum.ASC.order: false,
+        PriceOrderEnum.DESC.order: true,
+      },
+      onPressed: (selectedKey) =>
+          cryptocurrenciesController.emitOrderByPrice(selectedKey),
     );
   }
 }

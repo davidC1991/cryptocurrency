@@ -14,7 +14,7 @@ class CryptocurrencyDataSourceWith
   Future<Either<String, List<CryptocurrencyModel>>>
       getCryptocurrencies() async {
     try {
-      final Uri url = Uri.parse(
+      /*   final Uri url = Uri.parse(
           'https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=10&page=1&sparkline=false');
       final response = await http.get(url);
       if (response.statusCode == 200) {
@@ -23,7 +23,7 @@ class CryptocurrencyDataSourceWith
         /*  final List<CryptocurrencyModel> cryptocurrencies =
             cryptocurrencyModelFromJson(response.body); */
         return Right(cryptocurrencies);
-      }
+      } */
       final List<CryptocurrencyModel> fake =
           dataFake.map((e) => CryptocurrencyModel.fromJson(e)).toList();
       return Right(fake);
