@@ -7,6 +7,7 @@ import 'package:crypto/features/cryptocurrencies/presentation/bloc/cryptocurrenc
 import 'package:crypto/features/cryptocurrencies/presentation/controllers/cryptocurrencies_controller.dart';
 import 'package:crypto/features/cryptocurrencies/presentation/enums/compare_enum.dart';
 import 'package:crypto/features/cryptocurrencies/presentation/ui/widgets/cryptocurrency_card.dart';
+import 'package:crypto/features/favorites/presentation/bloc/favorites_bloc.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -54,22 +55,36 @@ class CryptocurrenciesScreen extends StatelessWidget {
     );
   }
 
-  ListView _showAllCryptocurrencies(CryptocurrenciesState state) {
-    return ListView.builder(
-      itemCount: state.cryptoCurrencies.length,
-      itemBuilder: (context, index) => CryptocurrencyCard(
-        name: state.cryptoCurrencies[index].name ?? '',
-        image: state.cryptoCurrencies[index].image ?? '',
-        price: state.cryptoCurrencies[index].currentPrice.toString(),
-        coin: 'USD',
-        onPressedCompare: () =>
-            cryptocurrenciesController.compareCryptocurrency(
-                state.cryptoCurrencies[index],
-                state.cryptocurrenciesInComparing),
-        onPressedFavorite: () {},
-        compareStatus: state.cryptoCurrencies[index].statusCompare?.status ??
-            StatusComparingCryptocurrencyEnum.ToCompare.status,
-      ),
+  Widget _showAllCryptocurrencies(CryptocurrenciesState state) {
+    return BlocBuilder<FavoritesBloc, FavoritesState>(
+      buildWhen: (previous, current) =>
+          previous.favoritesCryptocurrencies !=
+          current.favoritesCryptocurrencies,
+      builder: (context, favoriteState) {
+        return ListView.builder(
+            itemCount: state.cryptoCurrencies.length,
+            itemBuilder: (context, index) {
+              final currentCryptocurrency = state.cryptoCurrencies[index];
+              return CryptocurrencyCard(
+                name: currentCryptocurrency.name ?? '',
+                image: currentCryptocurrency.image ?? '',
+                price: currentCryptocurrency.currentPrice.toString(),
+                coin: 'USD',
+                onPressedCompare: () =>
+                    cryptocurrenciesController.compareCryptocurrency(
+                        currentCryptocurrency,
+                        state.cryptocurrenciesInComparing),
+                onPressedFavorite: () => cryptocurrenciesController.putFavorite(
+                    currentCryptocurrency,
+                    favoriteState.favoritesCryptocurrencies.toList()),
+                compareStatus: currentCryptocurrency.statusCompare?.status ??
+                    StatusComparingCryptocurrencyEnum.ToCompare.status,
+                isFavorite: favoriteState.favoritesCryptocurrencies
+                    .toList()
+                    .contains(currentCryptocurrency),
+              );
+            });
+      },
     );
   }
 

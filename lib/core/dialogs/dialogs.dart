@@ -20,7 +20,7 @@ class DialogCrypto {
           child: SimpleDialog(
             insetPadding:
                 const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
-            backgroundColor: CryptoColors.primaryColor,
+            backgroundColor: CryptoColors.grey.withOpacity(0.5),
             alignment: Alignment.bottomCenter,
             key: key,
             children: <Widget>[
@@ -33,15 +33,17 @@ class DialogCrypto {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     const CircularProgressIndicator(
-                      color: CryptoColors.primaryColor,
+                      color: CryptoColors.white,
                     ),
                     const SizedBox(width: 25),
                     Flexible(
                       child: Text(
-                        message ?? "Espera un momento...",
+                        message ?? "Wait a moment...",
                         maxLines: 3,
                         style: const TextStyle(
-                            color: CryptoColors.primaryColor, fontSize: 16),
+                          color: CryptoColors.white,
+                          fontSize: 16,
+                        ),
                       ),
                     )
                   ],
@@ -107,7 +109,7 @@ class DialogCrypto {
     Widget okButton = TextButton(
       child: const TextPrimary(
         text: "OK",
-        color: CryptoColors.primaryColor,
+        color: CryptoColors.blue,
         fontWeight: FontWeight.w800,
       ),
       onPressed: () {
@@ -116,12 +118,12 @@ class DialogCrypto {
     );
 
     AlertDialog alert = AlertDialog(
-      backgroundColor: CryptoColors.primaryColor,
+      backgroundColor: CryptoColors.blue,
       title: Text(title),
       content: TextPrimary(
         text: message,
         textAlign: TextAlign.justify,
-        color: CryptoColors.primaryColor,
+        color: CryptoColors.blue,
       ),
       actions: [
         okButton,

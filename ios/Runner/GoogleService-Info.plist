@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>API_KEY</key>
+	<string>AIzaSyCs2wlWyQ5vEunLD5GqX7-gtTu7nVJSzDc</string>
+	<key>GCM_SENDER_ID</key>
+	<string>571506937582</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.example.crypto</string>
+	<key>PROJECT_ID</key>
+	<string>cryptocurrency-b0524</string>
+	<key>STORAGE_BUCKET</key>
+	<string>cryptocurrency-b0524.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:571506937582:ios:0c864f30a123932ecb6dff</string>
+</dict>
+</plist>

@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 
 class ContainerDecorations {
   static BoxDecoration cryptoCardDecoration({
-    Color borderColor = CryptoColors.primaryColor,
+    Color borderColor = CryptoColors.blue,
     backgroundColor = Colors.transparent,
     double borderRadius = 4.0,
     List<BoxShadow>? boxShadow,

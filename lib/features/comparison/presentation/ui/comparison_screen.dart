@@ -6,8 +6,8 @@ import 'package:crypto/features/cryptocurrencies/presentation/ui/widgets/cryptoc
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class FavoritesScreen extends StatelessWidget {
-  const FavoritesScreen({super.key});
+class ComparisonScreen extends StatelessWidget {
+  const ComparisonScreen({super.key});
 
   @override
   Widget build(BuildContext context) {

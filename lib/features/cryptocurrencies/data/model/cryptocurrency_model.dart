@@ -1,12 +1,13 @@
-import 'package:crypto/features/cryptocurrencies/domain/entity/cryptocurrency.dart';
 import 'dart:convert';
 
+import 'package:crypto/features/cryptocurrencies/domain/entity/cryptocurrency.dart';
 import 'package:crypto/features/cryptocurrencies/presentation/enums/compare_enum.dart';
 
 List<CryptocurrencyModel> cryptocurrencyModelFromJson(String str) =>
     List<CryptocurrencyModel>.from(
         json.decode(str).map((x) => CryptocurrencyModel.fromJson(x)));
 
+// ignore: must_be_immutable
 class CryptocurrencyModel extends Cryptocurrency {
   final String? id;
   final String? symbol;
