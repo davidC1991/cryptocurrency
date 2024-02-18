@@ -1,4 +1,3 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:crypto/core/responsive/responsive.dart';
 import 'package:crypto/core/theme/colors/crypto_colors.dart';
 import 'package:crypto/core/widgets/searches/searcher.dart';
@@ -15,17 +14,30 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:phosphor_flutter/phosphor_flutter.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
   static const route = 'home-screen';
-  HomeScreen({super.key});
+  const HomeScreen({super.key});
+
+  @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
   final HomeController homeController = HomeController();
   @override
-  Widget build(BuildContext context) {
+  void initState() {
     final String userId =
         BlocProvider.of<LoginBloc>(context).state.userId ?? '';
     BlocProvider.of<CryptocurrenciesBloc>(context)
         .add(const GetCryptocurrencies());
     BlocProvider.of<FavoritesBloc>(context).add(GetFavorites(userId));
+    super.initState();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    print('home');
+
     homeController.context = context;
     homeController.searchListener();
     return GestureDetector(

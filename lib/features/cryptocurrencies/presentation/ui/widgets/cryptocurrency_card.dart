@@ -36,7 +36,10 @@ class CryptocurrencyCard extends StatelessWidget {
       child: ListTile(
         horizontalTitleGap: 10,
         contentPadding: const EdgeInsets.symmetric(horizontal: 10),
-        leading: Avatars.circle(context, image),
+        leading: Container(
+            width: 60,
+            alignment: Alignment.center,
+            child: Avatars.circle(context, image)),
         title: TextPrimary(
           text: name,
           fontWeight: FontWeight.w600,
@@ -45,7 +48,8 @@ class CryptocurrencyCard extends StatelessWidget {
         ),
         subtitle: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          mainAxisAlignment: MainAxisAlignment.start,
+          mainAxisSize: MainAxisSize.min,
           children: [
             FittedBox(
               child: TextPrimary(
@@ -57,8 +61,8 @@ class CryptocurrencyCard extends StatelessWidget {
             if (onPressedCompare != null) ...[
               const SizedBox(height: 5),
               SizedBox(
-                width: Responsive.of(context).widthPercent(30),
-                height: Responsive.of(context).heightPercent(3),
+                width: Responsive.of(context).widthPercent(36),
+                //height: Responsive.of(context).heightPercent(3),
                 child: CustomFlexiblePrimaryButton(
                   padding: EdgeInsets.zero,
                   color: CryptoColors.blue.withOpacity(0.2),

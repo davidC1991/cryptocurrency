@@ -12,10 +12,16 @@ import '../../../../helper/mocks.dart';
 import 'package:http/http.dart' as http;
 
 void main() {
-  MockHttp mockHttp = MockHttp();
-  CryptocurrencyDataSourceWithCoingecko cryptocurrencyDataSourceWithCoingecko =
-      CryptocurrencyDataSourceWithCoingecko(mockHttp);
+  late MockHttp mockHttp;
+  late CryptocurrencyDataSourceWithCoingecko
+      cryptocurrencyDataSourceWithCoingecko;
   final Uri url = Uri.parse(urlGetCryptocurrenciesCoingecko);
+
+  setUp(() {
+    mockHttp = MockHttp();
+    cryptocurrencyDataSourceWithCoingecko =
+        CryptocurrencyDataSourceWithCoingecko(mockHttp);
+  });
   group('should return a list of cryptocurrencies ', () {
     test('should return cryptocurrencies when status code is 200', () async {
       when(() => mockHttp.get(url)).thenAnswer((invocation) async =>

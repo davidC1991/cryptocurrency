@@ -58,6 +58,7 @@ class CryptocurrenciesScreen extends StatelessWidget {
           previous.favoritesCryptocurrencies !=
           current.favoritesCryptocurrencies,
       builder: (context, favoriteState) {
+        print('favoriteState...');
         return ListView.builder(
             itemCount: state.cryptoCurrencies.length,
             itemBuilder: (context, index) {
@@ -78,7 +79,7 @@ class CryptocurrenciesScreen extends StatelessWidget {
                     StatusComparingCryptocurrencyEnum.ToCompare.status,
                 isFavorite: favoriteState.favoritesCryptocurrencies
                     .toList()
-                    .contains(currentCryptocurrency),
+                    .any((element) => element.id == currentCryptocurrency.id),
               );
             });
       },

@@ -1,5 +1,5 @@
 import 'package:crypto/core/const%20/providers/cryptocurrencies_const.dart';
-import 'package:crypto/core/repositories/http/http_repository.dart';
+import 'package:crypto/core/third_party_package/http/http_repository.dart';
 import 'package:crypto/features/cryptocurrencies/data/model/cryptocurrency_model.dart';
 import 'package:dartz/dartz.dart';
 
@@ -23,9 +23,9 @@ class CryptocurrencyDataSourceWithCoingecko
             cryptocurrencyModelFromJson(response.body);
         return Right(cryptocurrencies);
       }
-      //If api limit access comment the above code and uncomment mock cryptocurrencies data
+      //If api get to limit access, comment the above code and uncomment mock cryptocurrencies data
       /*  final List<CryptocurrencyModel> fake =
-          dataFake.map((e) => CryptocurrencyModel.fromJson(e)).toList();
+          fakeData.map((e) => CryptocurrencyModel.fromJson(e)).toList();
       return Right(fake); */
       return const Left('Error to get cryptocurrencies');
     } catch (e) {
@@ -34,7 +34,7 @@ class CryptocurrencyDataSourceWithCoingecko
   }
 }
 
-final dataFake = [
+final fakeData = [
   {
     "id": "bitcoin",
     "symbol": "btc",

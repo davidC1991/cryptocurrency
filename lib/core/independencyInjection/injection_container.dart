@@ -1,4 +1,5 @@
-import 'package:crypto/core/repositories/http/http_repository.dart';
+import 'package:crypto/core/third_party_package/firebase/firebase_repository.dart';
+import 'package:crypto/core/third_party_package/http/http_repository.dart';
 import 'package:crypto/features/cryptocurrencies/data/datasource/cryptocurrency_datasource.dart';
 import 'package:crypto/features/cryptocurrencies/data/repository/cryptocurrency_datasource_impl.dart';
 import 'package:crypto/features/cryptocurrencies/domain/repository/cryptocurrency_repository.dart';
@@ -41,7 +42,7 @@ Future<void> login() async {
   getIt
       .registerLazySingleton<AuthRepository>(() => AuthDataSourceImpl(getIt()));
   getIt.registerLazySingleton<AuthDataSourceRepository>(
-      () => AuthDataSourceFirebaseProvider());
+      () => AuthDataSourceFirebaseProvider(FirebaseAsProvider()));
 }
 
 Future<void> favorites() async {
@@ -51,5 +52,5 @@ Future<void> favorites() async {
   getIt.registerLazySingleton<FavoriteRepository>(
       () => FavoriteDataSourceImpl(getIt()));
   getIt.registerLazySingleton<FavoriteDataSourceRepository>(
-      () => FavoriteDataSourceFirebaseProvider());
+      () => FavoriteDataSourceFirebaseProvider(FirebaseAsProvider()));
 }

@@ -7,12 +7,16 @@ import '../../../../helper/dummy_cryptocurrencies/dummy_models.dart';
 import '../../../../helper/mocks.dart';
 
 void main() {
-  MockCryptocurrencyDataSourceRepository
-      mockCryptocurrencyDataSourceRepository =
-      MockCryptocurrencyDataSourceRepository();
-  CryptocurrencyDataSourceImpl cryptocurrencyDataSourceImpl =
-      CryptocurrencyDataSourceImpl(mockCryptocurrencyDataSourceRepository);
+  late MockCryptocurrencyDataSourceRepository
+      mockCryptocurrencyDataSourceRepository;
+  late CryptocurrencyDataSourceImpl cryptocurrencyDataSourceImpl;
 
+  setUp(() {
+    mockCryptocurrencyDataSourceRepository =
+        MockCryptocurrencyDataSourceRepository();
+    cryptocurrencyDataSourceImpl =
+        CryptocurrencyDataSourceImpl(mockCryptocurrencyDataSourceRepository);
+  });
   group('Cryptocurrencies from data-source repository', () {
     test('Should return cryptocurrencies when a call to data is successful ',
         () async {

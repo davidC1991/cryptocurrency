@@ -1,4 +1,4 @@
-import 'package:crypto/core/repositories/http/http_repository.dart';
+import 'package:crypto/core/third_party_package/http/http_repository.dart';
 import 'package:crypto/features/cryptocurrencies/data/datasource/cryptocurrency_datasource.dart';
 import 'package:crypto/features/cryptocurrencies/domain/repository/cryptocurrency_repository.dart';
 import 'package:crypto/features/cryptocurrencies/domain/usecases/cryptocurrency.dart';

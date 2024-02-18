@@ -9,13 +9,13 @@ import 'package:mocktail/mocktail.dart';
 import '../../../../helper/mocks.dart';
 
 Future<void> main() async {
-  CryptocurrenciesUseCase cryptocurrencies;
-  MockCryptocurrenciesRepository mockCryptocurrenciesRepository;
+  late CryptocurrenciesUseCase cryptocurrencies;
+  late MockCryptocurrenciesRepository mockCryptocurrenciesRepository;
 
-  setUp(() {});
-
-  mockCryptocurrenciesRepository = MockCryptocurrenciesRepository();
-  cryptocurrencies = CryptocurrenciesUseCase(mockCryptocurrenciesRepository);
+  setUp(() {
+    mockCryptocurrenciesRepository = MockCryptocurrenciesRepository();
+    cryptocurrencies = CryptocurrenciesUseCase(mockCryptocurrenciesRepository);
+  });
 
   List<Cryptocurrency> cryptocurrencies_ = [
     Cryptocurrency(
