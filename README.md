@@ -52,9 +52,9 @@ Package usados:
 Se realiza las pruebas unitarias de las siguiente capas del feature cryptocurrencies (Pantalla del listado de cryptomonedas):
 1. data
 2. dominio
-3. presentacion
-   bloc
-   widget testing (home_screen)
+3. presentacion (Bloc, Widget testing-HomeScreen)
+
+
 
        
 
