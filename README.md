@@ -54,7 +54,7 @@ Se realiza las pruebas unitarias de las siguiente capas del feature cryptocurren
 2. dominio
 3. presentacion (Bloc, Widget testing-HomeScreen)
 
-
+NOTA: Esta  app fue probada en android, la configuración de firebase en iOS nunca se validó.
 
        
 
