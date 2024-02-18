@@ -1,16 +1,21 @@
 # crypto
 
-A new Flutter project.
+Esta aplicacion fue desarrollada con flutter version 3.19.0 , canal  estable , version de dart 3.3.0
 
-## Getting Started
+## Requerimieto funcionales 
 
-This project is a starting point for a Flutter application.
+Pantalla 0: Inicio de sesión con correo y contraseña.
+usuarios para ingresar.
 
-A few resources to get you started if this is your first Flutter project:
+crypto@test.com - 123456
+crypto1@test.com - 123456
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+Pantalla 1: Listado de criptomonedas , posee opción de ordenar ascendente o descendente, en la parte superior un campos de entrada de texto para filtrar por coincidencias, a su vez se observa el estado de comparación,
+en esta opción se puden observar tres estados (por comparar, comparando , comparar con), ademas se pueden presionar el icono de estrella para guardar la criptomoneda como favorita.
+Pantalla 2: Listado de cryptomonedas guadadas como favoritas.
+Pantalla 3: Comparación de criptomonedas elegidas en la pantalla 1.
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+
+## Requerimientos no funcionales 
+
+
