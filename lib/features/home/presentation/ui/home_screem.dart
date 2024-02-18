@@ -36,8 +36,6 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    print('home');
-
     homeController.context = context;
     homeController.searchListener();
     return GestureDetector(
