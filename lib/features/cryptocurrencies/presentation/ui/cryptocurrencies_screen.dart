@@ -58,7 +58,6 @@ class CryptocurrenciesScreen extends StatelessWidget {
           previous.favoritesCryptocurrencies !=
           current.favoritesCryptocurrencies,
       builder: (context, favoriteState) {
-        print('favoriteState...');
         return ListView.builder(
             itemCount: state.cryptoCurrencies.length,
             itemBuilder: (context, index) {
