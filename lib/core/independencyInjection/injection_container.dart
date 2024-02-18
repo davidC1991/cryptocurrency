@@ -1,3 +1,4 @@
+import 'package:crypto/core/repositories/http/http_repository.dart';
 import 'package:crypto/features/cryptocurrencies/data/datasource/cryptocurrency_datasource.dart';
 import 'package:crypto/features/cryptocurrencies/data/repository/cryptocurrency_datasource_impl.dart';
 import 'package:crypto/features/cryptocurrencies/domain/repository/cryptocurrency_repository.dart';
@@ -13,7 +14,6 @@ import 'package:crypto/features/login/data/repository/user_datasource_impl.dart'
 import 'package:crypto/features/login/domain/repository/auth_repository.dart';
 import 'package:crypto/features/login/domain/usecases/auth.dart';
 import 'package:crypto/features/login/presentation/bloc/login_bloc.dart';
-
 import 'package:get_it/get_it.dart';
 
 final getIt = GetIt.instance;
@@ -27,11 +27,11 @@ Future<void> dependenciesInitialization() async {
 Future<void> cryptoCurrencies() async {
   getIt.registerFactory(() => CryptocurrenciesBloc(getIt()));
 
-  getIt.registerLazySingleton(() => Cryptocurrencies(getIt()));
+  getIt.registerLazySingleton(() => CryptocurrenciesUseCase(getIt()));
   getIt.registerLazySingleton<CryptocurrencyRepository>(
       () => CryptocurrencyDataSourceImpl(getIt()));
   getIt.registerLazySingleton<CryptocurrencyDataSourceRepository>(
-      () => CryptocurrencyDataSourceWith());
+      () => CryptocurrencyDataSourceWithCoingecko(CustomeHttpClient()));
 }
 
 Future<void> login() async {

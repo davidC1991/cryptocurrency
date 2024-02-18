@@ -1,32 +1,32 @@
-import 'dart:io';
-
+import 'package:crypto/core/const%20/providers/cryptocurrencies_const.dart';
+import 'package:crypto/core/repositories/http/http_repository.dart';
 import 'package:crypto/features/cryptocurrencies/data/model/cryptocurrency_model.dart';
 import 'package:dartz/dartz.dart';
-import 'package:http/http.dart' as http;
 
 abstract class CryptocurrencyDataSourceRepository {
   Future<Either<String, List<CryptocurrencyModel>>> getCryptocurrencies();
 }
 
-class CryptocurrencyDataSourceWith
+class CryptocurrencyDataSourceWithCoingecko
     implements CryptocurrencyDataSourceRepository {
+  HttpClient httpClient;
+  CryptocurrencyDataSourceWithCoingecko(this.httpClient);
   @override
   Future<Either<String, List<CryptocurrencyModel>>>
       getCryptocurrencies() async {
     try {
-      /*   final Uri url = Uri.parse(
-          'https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=10&page=1&sparkline=false');
-      final response = await http.get(url);
+      //TODO:  Get url from environment variable
+      final Uri url = Uri.parse(urlGetCryptocurrenciesCoingecko);
+      final response = await httpClient.get(url);
       if (response.statusCode == 200) {
         final List<CryptocurrencyModel> cryptocurrencies =
             cryptocurrencyModelFromJson(response.body);
-        /*  final List<CryptocurrencyModel> cryptocurrencies =
-            cryptocurrencyModelFromJson(response.body); */
         return Right(cryptocurrencies);
-      } */
-      final List<CryptocurrencyModel> fake =
+      }
+      //If api limit access comment the above code and uncomment mock cryptocurrencies data
+      /*  final List<CryptocurrencyModel> fake =
           dataFake.map((e) => CryptocurrencyModel.fromJson(e)).toList();
-      return Right(fake);
+      return Right(fake); */
       return const Left('Error to get cryptocurrencies');
     } catch (e) {
       return Left(e.toString());

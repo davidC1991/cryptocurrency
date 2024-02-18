@@ -10,7 +10,6 @@ class CryptocurrencyDataSourceImpl implements CryptocurrencyRepository {
   @override
   Future<Either<String, List<CryptocurrencyModel>>>
       getCryptocurrencies() async {
-    final data = await cryptocurrencyDataSourceRepository.getCryptocurrencies();
-    return data;
+    return await cryptocurrencyDataSourceRepository.getCryptocurrencies();
   }
 }

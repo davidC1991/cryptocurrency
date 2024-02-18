@@ -11,7 +11,7 @@ part 'cryptocurrencies_state.dart';
 
 class CryptocurrenciesBloc
     extends Bloc<CryptocurrenciesEvent, CryptocurrenciesState> {
-  CryptocurrenciesBloc(Cryptocurrencies cryptocurrencies)
+  CryptocurrenciesBloc(CryptocurrenciesUseCase cryptocurrencies)
       : _cryptocurrencies = cryptocurrencies,
         super(CryptocurrenciesInitial()) {
     on<CryptocurrenciesEvent>((event, emit) {
@@ -50,7 +50,7 @@ class CryptocurrenciesBloc
       }
     });
   }
-  final Cryptocurrencies _cryptocurrencies;
+  final CryptocurrenciesUseCase _cryptocurrencies;
 
   void _getCryptocurrencies({
     PriceOrderEnum priceOrder = PriceOrderEnum.DESC,

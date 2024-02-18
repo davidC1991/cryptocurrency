@@ -47,9 +47,6 @@ class CryptocurrenciesScreen extends StatelessWidget {
             state.querySearch.isNotEmpty) {
           return _emptyState('No cryptocurrencies were found with that name');
         }
-        if (state.cryptoCurrenciesFiltered.isNotEmpty) {
-          return _showCryptocurrenciesFiltered(state);
-        }
         return _showAllCryptocurrencies(state);
       },
     );
