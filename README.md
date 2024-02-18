@@ -5,15 +5,29 @@ Esta aplicacion es desarrollada con flutter version 3.19.0 , canal  estable , ve
 ## Requerimientos funcionales 
 
 Pantalla 0: Inicio de sesión con correo y contraseña.
-usuarios para ingresar.
 
-crypto@test.com - 123456
-crypto1@test.com - 123456
+Usuarios para ingresar.
 
-Pantalla 1: Listado de criptomonedas , posee opción de ordenar ascendente o descendente, en la parte superior un campo de entrada de texto para filtrar por coincidencias, a su vez se observa el estado de comparación,
-en esta opción se puden haber tres estados (por comparar, comparando , comparar con), ademas se puede presionar el icono de estrella para guardar la criptomoneda como favorita.
-Pantalla 2: Listado de cryptomonedas guardadas como favoritas.
-Pantalla 3: Comparación de criptomonedas elegidas en la pantalla 1.
+| Usuario           | Contraseña |
+|-------------------|------------|
+| crypto@test.com   | 123456     |
+| crypto1@test.com  | 123456     |
+
+
+### Pantalla 1: Listado de criptomonedas
+- Opción de ordenar ascendente o descendente.
+- Campo de entrada de texto para filtrar por coincidencias.
+- Estado de comparación con tres opciones:
+  1. Por comparar
+  2. Comparando
+  3. Comparar con
+- Icono de estrella para guardar la criptomoneda como favorita.
+
+### Pantalla 2: 
+Listado de criptomonedas guardadas como favoritas.
+
+### Pantalla 3: 
+Comparación de criptomonedas elegidas en la Pantalla 1.
 
 (https://drive.google.com/file/d/1cyk9J1fFjWEW7iGyM5EDPfnK5D5OmDTJ/view?usp=sharing)
 
