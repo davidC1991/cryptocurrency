@@ -56,7 +56,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     _mailTextInput(),
                     Responsive.of(context).spaceSize(2, context),
                     _customText(
-                      text: 'Contraseña',
+                      text: 'Password',
                       fontSize: 16,
                       color: CryptoColors.grey,
                       fontWeight: FontWeight.w400,
